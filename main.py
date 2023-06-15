@@ -1,5 +1,6 @@
 import pandas as pd
 import openpyxl as ox
+from openpyxl.worksheet.table import Table, TableStyleInfo
 
 # Read CSV, update column names and sort by Name
 df = pd.read_csv(r'C:\members.csv')
@@ -18,5 +19,16 @@ worksheet.column_dimensions['C'].width = 48
 worksheet.column_dimensions['D'].width = 40
 worksheet.column_dimensions['E'].width = 40
 worksheet.column_dimensions['F'].width = 20
+
+#Get Cell Range for new table for formatting
+#Using F because there's 5 rows. If we decide to change the collumns the F will need to be changed to reflect the proper row
+row_count = worksheet.max_row
+table_cells = "A1:F" + str(row_count)
+
+#Put data in a table for formatting
+tab = Table(displayName='Contacts', ref=table_cells)
+style = TableStyleInfo(name='TableStyleLight1', showRowStripes=True, showColumnStripes=False)
+tab.tableStyleInfo = style
+workbook['Contacts'].add_table(tab)
 
 workbook.save(r'C:\Contact List.xlsx')
