@@ -21,7 +21,7 @@ worksheet.column_dimensions['E'].width = 40
 worksheet.column_dimensions['F'].width = 20
 
 #Get Cell Range for new table for formatting
-#Using F because there's 5 rows. If we decide to change the collumns the F will need to be changed to reflect the proper row
+#Using F because there's 5 columns. If we decide to change the columns the F will need to be changed to reflect the proper column
 row_count = worksheet.max_row
 table_cells = "A1:F" + str(row_count)
 
